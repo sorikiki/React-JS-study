@@ -22,7 +22,7 @@
 // so that we referred to each reducer function as 'slice reducer' function.
 
 
-// ✅ combinerReducers
+// ✅ combineReducers
 // ❓ A Redux store needs to have a single "root reducer" function passed in when it's created. 
 // ❗ If we tried calling all of the slice reducers by hand, it might look like this:
 /*
@@ -98,3 +98,8 @@
 console.log(newState)
 // {value: 11}
 */
+
+
+// ✅ Immer🤍 make us write 'mutating logic' in Redux Toolkit's createSlice and createReducer
+//  Immer tracks all the changes you've tried to make, and then uses that list of changes to return a safely immutably updated value, as if you'd written all the immutable update logic by hand.
+// ❗ You can only write "mutating" logic in Redux Toolkit's createSlice and createReducer because they use Immer inside!
