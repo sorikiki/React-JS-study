@@ -103,3 +103,41 @@ console.log(newState)
 // ✅ Immer🤍 make us write 'mutating logic' in Redux Toolkit's createSlice and createReducer
 //  Immer tracks all the changes you've tried to make, and then uses that list of changes to return a safely immutably updated value, as if you'd written all the immutable update logic by hand.
 // ❗ You can only write "mutating" logic in Redux Toolkit's createSlice and createReducer because they use Immer inside!
+
+
+// ✅ Writing Async Logic with Thunks
+// Synchronous: Actions are dispatched => the store runs the reducers and calculates the new state => the dispatch function finishes.
+// However, we also need a place to put that async logic in our Redux apps.
+// Using 'thunks' which is a special kind of Redux function that can contain asynchronous logic. 
+// - An inside thunk function, which gets dispatch and getState as arguments.
+// - The outside creator function, which creates and returns the thunk function.
+
+/* example 1
+    export const incrementAsync = amount => dispatch => {
+      setTimeout(() => {
+        dispatch(incrementByAmount(amount))
+      }, 1000)
+    }
+
+    store.dispatch(incrementAsync(5))
+*/
+
+/* example 2
+    // the outside "thunk creator" function
+    const fetchUserById = userId => {
+      // the inside "thunk function"
+      return async (dispatch, getState) => {
+        try {
+          // make an async call in the thunk
+          const user = await userAPI.fetchById(userId)
+          // dispatch an action when we get the response back
+          dispatch(userLoaded(user))
+        } catch (err) {
+          // If something went wrong, handle it here
+        }
+      }
+    }
+*/
+
+// cf. using thunks requires that the redux-thunk middleware (a type of plugin for Redux) be added to the Redux store when it's created. 
+// Fortunately, Redux Toolkit's configureStore function already sets that up for us automatically, so we can go ahead and use thunks here.
