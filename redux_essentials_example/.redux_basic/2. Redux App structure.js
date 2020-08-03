@@ -21,6 +21,7 @@
 // : Each state is a separate 'slice' of the Redux state.
 // so that we referred to each reducer function as 'slice reducer' function.
 
+
 // ✅ combinerReducers
 // ❓ A Redux store needs to have a single "root reducer" function passed in when it's created. 
 // ❗ If we tried calling all of the slice reducers by hand, it might look like this:
@@ -51,3 +52,49 @@
 // ✨ ES6 property shorthand notation 
 // A popular convention is to name reducers after the state slices they manage!
 // combineReducers({ counter: counter, todos: todos }) => combineReducers({ counter, todos })
+
+
+// ✅ createSlice
+// : A function that accepts an initial state, an object full of reducer functions, and a "slice name", and automatically generates action creators and action types that correspond to the reducers and state.
+// The string from the 'name' option is used as the first part of each action type, and the key name of each reducer function is used as the second part.
+// => So, the "counter" name + the "increment" reducer function generated an action type of {type: "counter/increment"}
+// => ex) console.log(counterSlice.actions.increment()) // {type: "counter/increment"}
+
+//✨ it is something like 'useReducer' in hook in that it contains reducer function and initial state.
+// => What is diffent is that createSlice produces action creators & action types!
+/*
+    export const counterSlice = createSlice({
+      name: 'counter',
+      initialState: {
+        value: 0
+      },
+      reducers: {
+        increment: state => {
+          // Redux Toolkit allows us to write "mutating" logic in reducers. It
+          // doesn't actually mutate the state because it uses the immer library,
+          // which detects changes to a "draft state" and produces a brand new
+          // immutable state based off those changes
+          state.value += 1
+        },
+        decrement: state => {
+          state.value -= 1
+        },
+        incrementByAmount: (state, action) => {
+          state.value += action.payload
+        }
+      }
+    })
+
+    export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+    export default counterSlice.reducer
+*/
+
+// => Moreover, it generates the slice reducer function that knows how to respond to all these action types.
+/*
+    const newState = counterSlice.reducer(
+    { value: 10 },
+    counterSlice.actions.increment()
+)
+console.log(newState)
+// {value: 11}
+*/
