@@ -121,6 +121,8 @@ function App() {
   
   // ✅ History
   // provide easily usable methods.
+  // You can also use 'useHistory' hook ,provided by 'react-router-dom'
+  // => do not need to pass props into component's argument and just wrtie history in your component.
 /*
   function History(props) {
     const history = props.history;
