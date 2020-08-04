@@ -164,6 +164,7 @@ console.log(newState)
 // ex. const countPlusTwo = useSelector(state => state.counter.value + 2)
 
 // ✨ useSelector guarantees our components to re-render any time an action has been dispatched and the Redux store has been updated.
+// Thus, Components should always try to select the smallest possible amount of data they need from the store, which will help ensure that it only renders when it actually needs to.
 
 // 2. Dispatching Actions with 'useDispatch'
 // => We alreay know that if we had access to a Redux store, we could dispatch actions using action creators, like store.dispatch(increment()).
