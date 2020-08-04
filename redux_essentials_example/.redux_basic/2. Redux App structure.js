@@ -105,7 +105,7 @@ console.log(newState)
 // ❗ You can only write "mutating" logic in Redux Toolkit's createSlice and createReducer because they use Immer inside!
 
 
-// ✅ Writing Async Logic with Thunks
+// ✅ Writing Async Logic with Thunks => go to next file to review Javascript-async :)
 // Synchronous: Actions are dispatched => the store runs the reducers and calculates the new state => the dispatch function finishes.
 // However, we also need a place to put that async logic in our Redux apps.
 // Using 'thunks' which is a special kind of Redux function that can contain asynchronous logic. 
@@ -141,3 +141,41 @@ console.log(newState)
 
 // cf. using thunks requires that the redux-thunk middleware (a type of plugin for Redux) be added to the Redux store when it's created. 
 // Fortunately, Redux Toolkit's configureStore function already sets that up for us automatically, so we can go ahead and use thunks here.
+
+// cf. More details about Using Middleware to Enable Async Logic
+// By itself, a Redux store doesn't know anything about async logic so that any asynchronicity has to happen outside the store.
+// => what if you want to have async logic interact with the store by dispatching or checking the current store state? 
+// => Redux middleware
+// => ✨ The most common async middleware is 'redux-thunk' ❕
+
+
+// ✅ Several Custom Hooks, created by the React-Redux library 🙌
+// The React-Redux library has a set of custom hooks that allow your React component to interact with a Redux store.
+
+// 1. Reading data with 'useSelector' 
+// : the useSelector hook lets our component extract whatever pieces of data it needs from the Redux store state.
+
+// ❓ Our components can't talk to the Redux store directly, because we're not allowed to import it into component files.
+// ✔ useSelector takes care of talking to the Redux store !
+// If we pass in a selector function, it calls someSelector(store.getState()) for us, and returns the result ❕
+// ex. const count = useSelector(selectCount)
+
+// + We don't have to only use selectors that have already been exported, either.
+// ex. const countPlusTwo = useSelector(state => state.counter.value + 2)
+
+// ✨ useSelector guarantees our components to re-render any time an action has been dispatched and the Redux store has been updated.
+
+// 2. Dispatching Actions with 'useDispatch'
+// => We alreay know that if we had access to a Redux store, we could dispatch actions using action creators, like store.dispatch(increment()).
+//❓ Since we don't have access to the store itself, we need some way to have access to 'just' the dispatch method.
+// ✔ The useDispatch hook does that for us, and gives us the actual dispatch method from the Redux store.
+/*
+    const dispatch = useDispatch();
+    ...
+    <button
+      className={styles.button}
+      aria-label="Increment value"
+      onClick={() => dispatch(increment())}
+    >
+</button>
+*/
