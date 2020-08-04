@@ -181,4 +181,17 @@ function App() {
   // 2. activeStyle: object
   // The styles to apply to the element when it is active.
 
+  // ✅ Redirect
+  // : Rendering a <Redirect> will navigate to a new location. 
+  // The new location will override the current location in the history stack 
   
+  // its props 
+  // - to: string => The URL to redirect to. All URL parameters that are used in to must be covered by from.
+  // - to: object => A location to redirect to.
+  // => URL path or pathname can be any valid URL that path-to-regexp@^1.7.0 understands.
+  // - push: bool => When true, redirecting will push a new entry onto the history instead of replacing the current one.
+  // - from: string => A pathname to redirect from. Any valid URL path that path-to-regexp@^1.7.0 understands. 
+  // => Note: This can only be used to match a location when rendering a <Redirect> inside of a <Switch>.
+  // - exact: bool => This can only be used in conjunction with from to exactly match a location when rendering a <Redirect> inside of a <Switch>.
+  // - strict: bool => This can only be used in conjunction with from to strictly match a location when rendering a <Redirect> inside of a <Switch>.
+  // - sensitive: bool
