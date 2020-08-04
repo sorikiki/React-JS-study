@@ -189,3 +189,26 @@ console.log(newState)
 
 // ❗ Notice that we use async thunks the same way we dispatch the other normal action creators.
 // The component doesn't care whether we're dispatching a normal action or starting some async logic. 
+
+
+// ✅ Providing the Store 
+// So far, we have dealt with useSelector & useDispatch.
+//❓ Since we didn't import the store, how do those hooks know what Redux store to talk to?
+// In order for our hooks to work, we need to use a component called <Provider> to pass down the Redux store so they can access it. 
+
+/* index.js 
+  import React from 'react'
+  import ReactDOM from 'react-dom'
+  import './index.css'
+  import App from './App'
+  import store from './app/store'
+  import { Provider } from 'react-redux'
+  import * as serviceWorker from './serviceWorker'
+
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('root')
+  )
+*/
