@@ -179,3 +179,13 @@ console.log(newState)
     >
 </button>
 */
+
+
+// ✅ Component State and Forms
+// Note: Global state that is needed across the app should go in the Redux store.
+// => State that's only needed in one place should be kept in component state.
+// => it makes sense to keep that value in a useState hook in a specific component.
+// => ex. Most form state probably shouldn't be kept in Redux.
+
+// ❗ Notice that we use async thunks the same way we dispatch the other normal action creators.
+// The component doesn't care whether we're dispatching a normal action or starting some async logic. 
