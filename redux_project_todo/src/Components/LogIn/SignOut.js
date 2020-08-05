@@ -1,27 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { toggle_login } from '../../reducers/login';
+import { toggleLoginAsync } from '../../reducers/login';
 
 const SignOutContainer = styled.div`
     width: 33%;
     h2 {
         text-align: center;
-        width: 100%;
+        color: red;
+        text-decoration: underline;
+        cursor: pointer;
     }
     `
 
 const SignOut = () => {
+    const history = useHistory();
     const dispatch = useDispatch();
 
     const onSetLoggedOut = () => {
-        dispatch(toggle_login());
+        dispatch(toggleLoginAsync(() => { history.push('/') }));
     }
 
     return (
         <SignOutContainer>
-            <h2><Link to='/' onClick={onSetLoggedOut}>Sign Out</Link></h2>
+            <h2 onClick={onSetLoggedOut}>Sign Out</h2>
         </SignOutContainer>
     )
 }

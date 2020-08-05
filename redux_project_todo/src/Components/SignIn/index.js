@@ -27,8 +27,6 @@ const SignUp = () => {
             <SignInBtn 
                 id={id}
                 password={password}
-                setId={setId}
-                setPassword={setPassword}
             />
         </SignInContainer>
     )

@@ -20,9 +20,15 @@ const loginSlice = createSlice({
             state.login = !state.login;
         }
     }
-
 })
 
 export const { save_id, save_password, toggle_login } = loginSlice.actions;
+
+export const toggleLoginAsync = callback => dispatch => {
+    setTimeout(() => {
+        dispatch(toggle_login());
+        callback();
+    }, 1000)
+}
 
 export default loginSlice.reducer;
