@@ -15,16 +15,20 @@ const todosSlice = createSlice({
     reducers: {
         insert_todos: (state, action) => state.concat(action.payload),
 
-        toggle_todos: (state, action) => state.map( todo => todo.id === action.payload.id ? todo.done = !todo.done : todo ),
+        toggle_todos: (state, action) => {
+            state.map( todo => {
+                if(todo.id === action.payload.id) {
+                    return todo.done = !todo.done;
+                } 
+                else return todo;
+            }
+            )
+        },
 
         modify_todos: {
             reducer (state, action) {
-                state.map( todo => {
-                    if(todo.id === action.payload.id) {
-                        todo.modified = action.payload.modified;
-                    }
-                })
-                },
+                state.map( todo => todo.id === action.payload.id ? todo.modified = action.payload.modified : todo )
+            },
             prepare (id, text) {
                 return {
                     payload: {
@@ -40,12 +44,8 @@ const todosSlice = createSlice({
     },
     extraReducers:  {
         [modify_todos] : (state, action) => {
-            state.map( todo => {
-                if(todo.modified === true) {
-                    todo.text = action.payload.text;
+            state.map( todo => todo.modified === true ? todo.text = action.payload.text : todo)
                 }
-            })
-        }
     }
 })
 

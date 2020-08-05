@@ -18,7 +18,6 @@ const ListContent = styled.div`
 
 const TodoList = () => {
     const todos = useSelector(state => state.todos);
-    console.log(todos);
     const listArray = todos.map(todo => {
         return (
             <ListItem key={todo.id}>
