@@ -21,6 +21,7 @@ const TodoCreate = () => {
     const onInsertTodo = () => {
         setId(id+1);
         dispatch(insert_todos({ id, text: input, done: false, modified: false }));
+        setInput('');
     }
     
 	return (
