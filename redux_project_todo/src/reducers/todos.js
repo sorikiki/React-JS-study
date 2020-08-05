@@ -12,7 +12,9 @@ const todosSlice = createSlice({
     initialState,
     reducers: {
         insert_todos: {
-            reducer (state, action) { return state.concat(action.payload) },
+            reducer (state, action) { 
+                return state.concat(action.payload) 
+            },
             prepare (id, input) {
                 return {
                     payload: {

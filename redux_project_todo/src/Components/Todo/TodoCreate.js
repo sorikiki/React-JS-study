@@ -19,6 +19,8 @@ const TodoCreate = () => {
 
     const todosModified = todos.map(todo => todo.modified);
 
+    const btnName = todosModified.includes(true) ? 'Modify' : 'Add';
+
     const onChangeInput = e => {
         user.login ?
         setInput(e.target.value):
@@ -39,10 +41,7 @@ const TodoCreate = () => {
         dispatch(modify_todos(input));
         setInput('');
     }
-
-    const btnName = todosModified.includes(true) ? 'Modify' : 'Add';
     
-
 	return (
 		<CreateContainer>
             <input 
