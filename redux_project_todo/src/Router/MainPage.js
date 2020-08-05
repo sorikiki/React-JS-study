@@ -9,7 +9,7 @@ const MainPageContainer = styled.div`
     `
 
 const MainPage = () => {
-    return(
+    return (
         <MainPageContainer>
             <SignUp />
             <SignIn />

@@ -5,11 +5,12 @@ import { modify_todos } from '../../reducers/todos';
 
 const TodoHandleModify = ({id}) => {
 	const dispatch = useDispatch();
-
-	const todos = useSelector(state => state.todos);
+	const user = useSelector(state => state.user);
 
     const onModifyTodo = () => {
-		dispatch(modify_todos(id));
+		user.login?
+		dispatch(modify_todos(id)):
+		alert('Access is not available unless you are a member.');
 	}
 
 	return <IoIosCreate onClick={onModifyTodo}/>;
