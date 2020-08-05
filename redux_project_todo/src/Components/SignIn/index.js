@@ -5,6 +5,7 @@ import SignInBtn from './SignInBtn';
 
 const SignInContainer = styled.div`
     width: 33%;
+    margin-left: 10px;
     h2 {
         text-align: center
     }

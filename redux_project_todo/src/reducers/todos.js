@@ -1,4 +1,4 @@
-import { createSlice, createAction } from '@reduxjs/toolkit';
+import { createSlice, nanoid } from '@reduxjs/toolkit';
 
 const initialState = [{
     id: 1,
@@ -7,13 +7,23 @@ const initialState = [{
     modified: false
 }]
 
-const modify_todos = createAction('todos/modify_todos')
-
 const todosSlice = createSlice({
     name: 'todos',
     initialState,
     reducers: {
-        insert_todos: (state, action) => state.concat(action.payload),
+        insert_todos: {
+            reducer (state, action) { return state.concat(action.payload) },
+            prepare (id, input) {
+                return {
+                    payload: {
+                        id,
+                        text: input,
+                        done: false,
+                        modified: false
+                    }
+                }
+            }
+        },
 
         toggle_todos: (state, action) => {
             state.map( todo => {
@@ -27,28 +37,40 @@ const todosSlice = createSlice({
 
         modify_todos: {
             reducer (state, action) {
-                state.map( todo => todo.id === action.payload.id ? todo.modified = action.payload.modified : todo )
+                action.payload.id && state.map( todo => {
+                    if(todo.id === action.payload.id) {
+                        return todo.modified = !todo.modified;
+                    } 
+                    else if(todo.modified === true) {
+                        return todo.modified = false;
+                    }
+                    else return todo;
+                })
+                action.payload.text && state.map(todo => {
+                    if(todo.modified === true) {
+                        todo.text = action.payload.text;
+                        return todo.modified = false;
+                    }
+                    else return todo;
+                })
             },
-            prepare (id, text) {
-                return {
-                    payload: {
-                        id,
-                        text,
-                        modified: true
+            prepare (value) {
+                const type = typeof value;
+                if(type === 'number') {
+                    return {
+                        payload: { id: value }
+                    }
+                } else {
+                    return {
+                        payload: { text: value }
                     }
                 }
-            }
-        },
+        }},
 
         delete_todos: (state, action) => state.filter(todo => todo.id !== action.payload.id)
-    },
-    extraReducers:  {
-        [modify_todos] : (state, action) => {
-            state.map( todo => todo.modified === true ? todo.text = action.payload.text : todo)
-                }
     }
 })
 
-export const { insert_todos, toggle_todos, delete_todos } = todosSlice.actions;
+export const { insert_todos, toggle_todos, modify_todos, delete_todos } = todosSlice.actions;
 
 export default todosSlice.reducer;

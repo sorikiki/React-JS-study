@@ -5,6 +5,7 @@ import SignUpBtn from './SignUpBtn';
 
 const SignUpContainer = styled.div`
     width: 33%;
+    margin-left: 10px;
     h2 {
         text-align: center
     }
