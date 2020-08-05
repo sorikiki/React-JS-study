@@ -1,17 +1,28 @@
-import React from 'react';
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = false;
+const initialState = {
+    id: '',
+    password: '',
+    login: false
+}
 
 const loginSlice = createSlice({
-    name: 'login',
+    name: 'user',
     initialState,
-    reducer: {
-        toggle_login: (state) => !state
+    reducers: {
+        save_id: (state, action) => {
+            state.id = action.payload.id;
+        },
+        save_password: (state, action) => {
+            state.password = action.payload.password;
+        },
+        toggle_login: state => {
+            state.login = !state.login;
+        }
     }
 
 })
 
-export const { toggle_login } = loginSlice.actions;
+export const { save_id, save_password, toggle_login } = loginSlice.actions;
 
 export default loginSlice.reducer;

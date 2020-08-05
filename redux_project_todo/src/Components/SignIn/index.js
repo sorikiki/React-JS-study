@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import SignInInput from './SignInInput';
 import SignInBtn from './SignInBtn';
@@ -11,23 +11,24 @@ const SignInContainer = styled.div`
     }
     `
 
-const SignUp = props => {
+const SignUp = () => {
+    const [id, setId] = useState('');
+    const [password, setPassword] = useState('');
+
     return (
         <SignInContainer>
             <h2>For a member</h2>
             <SignInInput 
-                id={props.signInId}
-                password={props.signInPassword}
-                setId={props.setSignInId}
-                setPassword={props.setSignInPassword}
+                id={id}
+                password={password}
+                setId={setId}
+                setPassword={setPassword}
             />
             <SignInBtn 
-                signUpId={props.signUpId}
-                signUpPassword={props.signUpPassword}
-                signInId={props.signInId}
-                signInPassword={props.signInPassword}
-                setId={props.setSignInId}
-                setPassword={props.setSignInPassword}
+                id={id}
+                password={password}
+                setId={setId}
+                setPassword={setPassword}
             />
         </SignInContainer>
     )
