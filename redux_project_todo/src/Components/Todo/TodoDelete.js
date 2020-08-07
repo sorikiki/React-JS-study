@@ -5,10 +5,10 @@ import { delete_todos } from '../../reducers/todos';
 
 const TodoDelete = ({id}) => {
     const dispatch = useDispatch();
-    const user = useSelector(state => state.user);
+    const login = useSelector(state => state.user.login);
     
     const onDeleteTodo = () => {
-       user.login ?
+       login ?
        dispatch(delete_todos({id})):
        alert('Access is not available unless you are a member.');
     }

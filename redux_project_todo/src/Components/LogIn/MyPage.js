@@ -11,11 +11,11 @@ const MyPageContainer = styled.div`
     `
 
 const MyPage = () => {
-    const user = useSelector(state => state.user);
+    const id = useSelector(state => state.user.id);
     return (
         <MyPageContainer>
             <h2>MyPage</h2>
-            <h6><strong>{user.id}</strong></h6>
+            <h6><strong>{id}</strong></h6>
             <h6>내정보</h6>
         </MyPageContainer>
     )

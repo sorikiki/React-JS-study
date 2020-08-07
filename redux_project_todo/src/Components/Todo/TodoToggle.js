@@ -6,10 +6,10 @@ import { toggle_todos } from '../../reducers/todos';
 const TodoToggle = ({id}) => {
     const dispatch = useDispatch();
 
-    const user = useSelector(state => state.user);
+    const login = useSelector(state => state.user.login);
 
     const onToggleTodo = () => {
-       user.login?
+       login?
        dispatch(toggle_todos({ id })):
        alert('Access is not available unless you are a member.');
     }

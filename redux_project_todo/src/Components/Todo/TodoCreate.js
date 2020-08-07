@@ -15,14 +15,14 @@ const TodoCreate = () => {
     const dispatch = useDispatch();
     
     const todos = useSelector(state => state.todos);
-    const user = useSelector(state => state.user);
+    const login = useSelector(state => state.user.login);
 
     const todosModified = todos.map(todo => todo.modified);
 
     const btnName = todosModified.includes(true) ? 'Modify' : 'Add';
 
     const onChangeInput = e => {
-        user.login ?
+        login ?
         setInput(e.target.value):
         alert('Access is not available unless you are a member.');
     }
