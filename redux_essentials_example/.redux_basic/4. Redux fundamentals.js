@@ -303,7 +303,7 @@ function todoApp(state = {}, action) {
 // The state parameter is different for every reducer, and corresponds to the part of the state it manages.
 
 
-// ✅ combineReducers()
+// ✨ combineReducers()
 // And like other reducers, combineReducers() does not create a new object if all of the reducers provided to it do not change state.
 
 /*
@@ -337,3 +337,35 @@ function todoApp(state = {}, action) {
 
   const todoApp = combineReducers(reducers)
 */
+
+
+// ✅ Store
+
+// 1. its reponsibility: 
+
+// Holds application state
+// Allows access to state via getState()
+// Allows state to be updated via dispatch(action)
+// Registers listeners via subscribe(listener)
+// Handles unregistering of listeners via the function returned by subscribe(listener).
+
+// 2. ❗ A single store in a Redux application. 
+// => When you want to split your data handling logic, you'll use reducer composition instead of many stores.
+
+// 3. createStore(): to define store
+// You may optionally specify the initial state as the second argument to createStore(). 
+// => This is useful for hydrating the state of the client to match the state of a Redux application running on the server.
+
+
+// ✅ Data flow
+// The data lifecycle in any Redux app follows these 4 steps:
+
+// 1. You call store.dispatch(action)
+// You can call store.dispatch(action) from anywhere in your app, including components and XHR callbacks, or even at scheduled intervals. ❓
+
+// 2. The Redux store calls the reducer function you gave it.
+// The store will pass two arguments to the reducer: the current state tree and the action. 
+
+// 3. The root reducer may combine the output of multiple reducers into a single state tree.
+
+// 4. The Redux store saves the complete state tree returned by the root reducer.
