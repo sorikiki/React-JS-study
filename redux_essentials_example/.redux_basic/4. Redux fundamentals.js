@@ -28,7 +28,7 @@
 
 // ✅ Action creators
 
-// review 1: createSlice - reducers
+// review : createSlice - reducers
 // They must not do any "asynchronous logic", calculate random values, or cause other "side effects".
 // Asynchronous logic can be made by thunk functions.
 // Side effects include API calls and routing transitions.
@@ -53,61 +53,123 @@
 // - Return (Function or Object): An object mimicking the original object, but with each function immediately dispatching the action returned by the corresponding action creator.
 // => If you passed a function as actionCreators, the return value will also be a single function.
 
-/* ex) TodoActionCreators.js
-    export function addTodo(text) {
-      return {
-        type: 'ADD_TODO',
-        text
-      }
-    }
-
-    export function removeTodo(id) {
-      return {
-        type: 'REMOVE_TODO',
-        id
-      }
-    }
-*/
-
 // Q. You might ask: why don't we bind the action creators to the store instance right away?
 // A. Most likely you want to have a separate store instance per request so you can prepare them with different data, but binding action creators during their definition means you're stuck with a single store instance for all requests.
 
+/* ex.
 
-// ✅ Dispatch
-// review 1. useDispatch
-//❓ Since we don't have access to the store itself, we need some way to have access to 'just' the dispatch method.
-// ✔ The useDispatch hook does that for us, and gives us the actual dispatch method from the Redux store.
+ * action types
 
-// ✨ The 'connect()' function also connects a React component to a Redux store.
-// : It provides its connected component with the pieces of the data it needs from the store, 
-// and the 'functions' it can use to dispatch actions to the store.
-// 1. What parameters are passed into a connect() parameter?
-/*
-    connect accepts four different parameters, all optional. By convention, they are called:
-    mapStateToProps?: Function
-    mapDispatchToProps?: Function | Object
-    mergeProps?: Function
-    options?: Object
+export const ADD_TODO = 'ADD_TODO'
+export const TOGGLE_TODO = 'TOGGLE_TODO'
+export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
+
+ * other constants
+
+export const VisibilityFilters = {
+  SHOW_ALL: 'SHOW_ALL',
+  SHOW_COMPLETED: 'SHOW_COMPLETED',
+  SHOW_ACTIVE: 'SHOW_ACTIVE'
+}
+
+
+ * action creators
+
+export function addTodo(text) {
+  return { type: ADD_TODO, text }
+}
+
+export function toggleTodo(index) {
+  return { type: TOGGLE_TODO, index }
+}
+
+export function setVisibilityFilter(filter) {
+  return { type: SET_VISIBILITY_FILTER, filter }
+}
 */
-// 2. More description
-/*
-    The mapStateToProps and mapDispatchToProps deals with your Redux store’s state and dispatch, respectively. 
-    state and dispatch will be supplied to your mapStateToProps or mapDispatchToProps functions as the first argument.
-    The returns of mapStateToProps and mapDispatchToProps are referred to internally as stateProps and dispatchProps, respectively. 
-    They will be supplied to mergeProps, if defined, as the first and the second argument, where the third argument will be ownProps. 
-    The combined result, commonly referred to as mergedProps, will then be supplied to your connected component.
-*/
 
 
-// ✅ Reducers
+// ✅ Designing the state shape
 
-// review: 
+// review 1: 
 // The reducer is a pure function that takes the previous state and an action, and returns the next state.
 
-// Let's recall important Rule ❗
+// review 2: let's recall important 'reducer' Rule ❗
 // ❗ Things you should never do in a reducer.
 // - Mutate its arguments
 // - Asynchronous logic
 // - Perform side effects like API calls and routing transitions
 // - Call non-pure functions, e.g. Date.now() or Math.random().
+
+// In Redux, all the application state is stored as a single object.
+// Let's think of its shape before writing any code.
+
+/* ex
+  {
+  visibilityFilter: 'SHOW_ALL',
+  todos: [
+    {
+      text: 'Consider using Redux',
+      completed: true
+    },
+    {
+      text: 'Keep all state in a single tree',
+      completed: false
+    }
+  ]
+}
+*/
+
+
+// ✅ Handling Actions
+/*
+  import { VisibilityFilters } from './actions'
+
+  const initialState = {
+    visibilityFilter: VisibilityFilters.SHOW_ALL,
+    todos: []
+  }
+
+  function todoApp(state, action) {
+    if (typeof state === 'undefined') {
+      return initialState
+    }
+
+    // For now, don't handle any actions
+    // and just return the state given to us.
+    return state
+  }
+*/
+
+// One neat trick is to use the ES6 default arguments syntax to write this in a more compact way 🙌
+
+/*
+  import {
+    SET_VISIBILITY_FILTER,
+    VisibilityFilters
+  } from './actions'
+
+  ...
+
+  function todoApp(state = initialState, action) {
+    switch (action.type) {
+      case SET_VISIBILITY_FILTER:
+        return Object.assign({}, state, {
+          visibilityFilter: action.filter
+        })
+      default:
+        return state
+    }
+  }
+*/
+
+// ❗ Note that
+// 1. We don't mutate the state.
+// -  We create a copy with Object.assign(). Object.assign(state, { visibilityFilter: action.filter }) is also wrong: it will mutate the first argument. 
+// - You can also enable the object spread operator proposal to write { ...state, ...newState } instead.
+// 2. We return the previous state in the default case. 
+// - It's important to return the previous state for any unknown action.
+
+// ✔ separate action creators from reducer functions and export them to component.
+// ✔ reducer functions import action types and make logic without mutating state.
 
