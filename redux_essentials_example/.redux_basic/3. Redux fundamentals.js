@@ -421,6 +421,14 @@ function todoApp(state = {}, action) {
 
 // Return: It does not modify the component class passed to it; 
 // instead, it returns a new, connected component class that wraps the component you passed in.
+// ✔ The return of connect() is a wrapper function that takes your component and returns a wrapper component with the additional props it injects.
+// ✔ In most cases, the wrapper function will be called right away, without being saved in a temporary variable.
+/*
+  export default connect(
+    mapState,
+    mapDispatch
+  )(Login)
+*/
 
 // Argument:
 // function connect(mapStateToProps?, mapDispatchToProps?, mergeProps?, options?)
@@ -430,7 +438,7 @@ function todoApp(state = {}, action) {
 // => They will be supplied to mergeProps, if defined, as the first and the second argument, where the third argument will be ownProps. 
 // => The combined result, commonly referred to as mergedProps, will then be supplied to your connected component.
 
-// 1. mapStateToProps?: (state, ownProps?) => Object
+// ◼ mapStateToProps?: (state, ownProps?) => Object
 // : If a mapStateToProps function is specified, the new wrapper component will 'subscribe' to Redux store updates.
 // => // - If you don't want to subscribe to store updates, pass null or undefined in place of mapStateToProps.
 // - parameters: state(object), ownProps(object)
@@ -444,7 +452,7 @@ function todoApp(state = {}, action) {
 })
 */
 
-// 2. mapDispatchToProps?: Object | (dispatch, ownProps?) => Object
+// ◼ mapDispatchToProps?: Object | (dispatch, ownProps?) => Object
 // - parameters : dispatch(function), 2. ownProps(object)
 // - dispatch: If your mapDispatchToProps is declared as a function taking one parameter, it will be given the dispatch of your store.
 
@@ -485,4 +493,42 @@ function todoApp(state = {}, action) {
     null,
     mapDispatchToProps
   )(TodoApp)
+*/
+
+// ◼ mergeProps?: (stateProps, dispatchProps, ownProps) => Object
+// : If specified, defines how the final props for your own wrapped component are determined.
+// => If you do not provide mergeProps, your wrapped component receives { ...ownProps, ...stateProps, ...dispatchProps } by default.
+
+// ◼ options?: Object
+
+
+// ◼ The Arity of mapToProps Functions
+// - The number of declared function parameters of mapStateToProps and mapDispatchToProps determines whether they receive ownProps.
+// - Functions with no mandatory parameters or two parameters*will receive ownProps.
+/*
+  function mapStateToProps(state) {
+  console.log(state) // state
+  console.log(arguments[1]) // undefined
+}
+
+const mapStateToProps = (state, ownProps = {}) => {
+  console.log(state) // state
+  console.log(ownProps) // {}
+}
+*/
+/*
+  const mapStateToProps = (state, ownProps) => {
+  console.log(state) // state
+  console.log(ownProps) // ownProps
+}
+
+function mapStateToProps() {
+  console.log(arguments[0]) // state
+  console.log(arguments[1]) // ownProps
+}
+
+const mapStateToProps = (...args) => {
+  console.log(args[0]) // state
+  console.log(args[1]) // ownProps
+}
 */
