@@ -91,7 +91,7 @@ const finalResult = actions.reduce(counterReducer, initialState)
 //  => make a copy of the state, update the copy with new values, and return it.
 //  => Otherwise, return the existing state unchanged
 // - ✔ They must not do any asynchronous logic, calculate random values, or cause other "side effects". ❓
-// - ✔ Reducers can use any kind of logic inside to decide what the new state should be: if/else, switch, loops, and so on.
+// - 👌 Reducers can use any kind of logic inside to decide what the new state should be: if/else, switch, loops, and so on.
 
 // 4. Store ( 1 project 1 store ❗ )
 // : The current Redux application state lives in an object called the store .
@@ -127,6 +127,7 @@ const finalResult = actions.reduce(counterReducer, initialState)
   const currentValue = selectCounterValue(store.getState())
   console.log(currentValue)
 */
+
 
 // ✅ Redux: one-way data flow 🙌
 // The store runs the reducers, and the state is updated based on what occurred ✨

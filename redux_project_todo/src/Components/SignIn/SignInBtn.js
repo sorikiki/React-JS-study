@@ -10,6 +10,7 @@ const BtnContainer = styled.button`
 
 const SignInBtn = ({ id, password }) => {
     const user = useSelector(state => state.user);
+    const isLoggedIn = useSelector(state => state.user.isLoggedIn)
     const dispatch = useDispatch();
     const history = useHistory();
 

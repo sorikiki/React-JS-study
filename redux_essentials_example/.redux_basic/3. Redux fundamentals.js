@@ -91,6 +91,7 @@ export function setVisibilityFilter(filter) {
 
 // ✅ Designing the state shape
 
+
 // review 1: 
 // The reducer is a pure function that takes the previous state and an action, and returns the next state.
 
@@ -353,7 +354,8 @@ function todoApp(state = {}, action) {
 // => When you want to split your data handling logic, you'll use reducer composition instead of many stores.
 
 // 3. createStore(): to define store
-// You may optionally specify the initial state as the second argument to createStore(). 
+// - Argument : createStore(reducer, [preloadedState], [enhancer])
+// - You may optionally specify the initial state as the second argument to createStore(). 
 // => This is useful for hydrating the state of the client to match the state of a Redux application running on the server.
 
 
