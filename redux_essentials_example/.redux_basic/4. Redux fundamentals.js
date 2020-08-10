@@ -412,3 +412,77 @@ function todoApp(state = {}, action) {
   const unsubscribe = store.subscribe(handleChange)
   unsubscribe()
 */
+
+
+// ✅ connect() : import from 'react-redux'
+
+// Feature: It provides its connected component with 1. the pieces of the data it needs from the store, 
+// and 2. the functions it can use to dispatch actions to the store.
+
+// Return: It does not modify the component class passed to it; 
+// instead, it returns a new, connected component class that wraps the component you passed in.
+
+// Argument:
+// function connect(mapStateToProps?, mapDispatchToProps?, mergeProps?, options?)
+// - The mapStateToProps and mapDispatchToProps deals with your Redux store’s state and dispatch, respectively. 
+// => state and dispatch will be supplied to your mapStateToProps or mapDispatchToProps functions as the first argument.
+// => The returns of mapStateToProps and mapDispatchToProps are referred to internally as stateProps and dispatchProps, respectively.
+// => They will be supplied to mergeProps, if defined, as the first and the second argument, where the third argument will be ownProps. 
+// => The combined result, commonly referred to as mergedProps, will then be supplied to your connected component.
+
+// 1. mapStateToProps?: (state, ownProps?) => Object
+// : If a mapStateToProps function is specified, the new wrapper component will 'subscribe' to Redux store updates.
+// => // - If you don't want to subscribe to store updates, pass null or undefined in place of mapStateToProps.
+// - parameters: state(object), ownProps(object)
+// - state: If your mapStateToProps function is declared as taking one parameter, it will be called whenever the store state changes, and given the store state as the only parameter.
+// - ownProps: If your mapStateToProps function is declared as taking two parameters, it will be called whenever the store state changes or when the wrapper component receives new props (based on shallow equality comparisons).
+// - return: The results of mapStateToProps must be 'a plain object', which will be merged into the wrapped component’s props. 
+// ✔ Note that returning a mutated object of the same reference is a common mistake that can result in your component not re-rendering when expected.
+/*
+  ex. const mapStateToProps = (state, ownProps) => ({
+  todo: state.todos[ownProps.id]
+})
+*/
+
+// 2. mapDispatchToProps?: Object | (dispatch, ownProps?) => Object
+// - parameters : dispatch(function), 2. ownProps(object)
+// - dispatch: If your mapDispatchToProps is declared as a function taking one parameter, it will be given the dispatch of your store.
+
+/*
+  const mapDispatchToProps = dispatch => {
+  return {
+    // dispatching plain actions
+    increment: () => dispatch({ type: 'INCREMENT' }),
+    decrement: () => dispatch({ type: 'DECREMENT' }),
+    reset: () => dispatch({ type: 'RESET' })
+  }
+}
+*/
+// - ownProps: If your mapDispatchToProps function is declared as taking two parameters, it will be called with dispatch as the first parameter and the props passed to the wrapper component as the second parameter, and will be re-invoked whenever the connected component receives new props.
+// - return: Your mapDispatchToProps functions are expected to return an object. 
+// => Each fields of the object should be a function, calling which is expected to dispatch an action to the store.
+
+// - object shorthand form: mapDispatchToProps may be an object where each field is an action creator.💖
+// => In this case, if you pass an object full of action creators instead of a function, connect will automatically call bindActionCreators for you internally.
+// => bindActionCreators: React-Redux binds the dispatch of your store to each of the action creators.
+
+/*
+// internally, React-Redux calls bindActionCreators
+// to bind the action creators to the dispatch of your store
+  bindActionCreators(mapDispatchToProps, dispatch)
+*/
+
+/*
+  import { addTodo, deleteTodo, toggleTodo } from './actionCreators'
+
+  const mapDispatchToProps = {
+    addTodo,
+    deleteTodo,
+    toggleTodo
+  }
+
+  export default connect(
+    null,
+    mapDispatchToProps
+  )(TodoApp)
+*/
