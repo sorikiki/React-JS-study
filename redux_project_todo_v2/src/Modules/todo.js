@@ -1,9 +1,9 @@
+import { nanoid } from 'nanoid';
+
 const CHANGE_INPUT = 'todos/CHANGE_INPUT';
 const INSERT = 'todos/INSERT';
 const TOGGLE = 'todos/TOGGLE';
 const REMOVE = 'todos/REMOVE';
-
-let id = 1;
 
 export const change_input = input => ({
     type: CHANGE_INPUT,
@@ -13,7 +13,7 @@ export const change_input = input => ({
 export const insert_todo = text => ({
     type: INSERT,
     todo: {
-        id: id++,
+        id: nanoid(),
         text,
         done: false
     }

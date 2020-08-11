@@ -11,13 +11,13 @@ const ListItem = styled.div`
     justify-content: space-between;
     margin: 5px 10px;
     `
-const TodoItem = ({ todo, onToggle, onRemove }) => {
+const TodoItem = ({ isLoggedIn, todo, onToggle, onRemove }) => {
     return (
         <ListItem>
             <div>
                 <input 
                     type="checkbox"
-                    onClick={() => onToggle(todo.id)}
+                    onClick={() => isLoggedIn ? onToggle(todo.id) : alert('You are not a member!')}
                     checked={todo.done}
                     readOnly={true}
                 />
@@ -25,12 +25,13 @@ const TodoItem = ({ todo, onToggle, onRemove }) => {
                     {todo.text}
                 </span>
             </div>
-            <button onClick={() => onRemove(todo.id)}>X</button>
+            <button onClick={() => isLoggedIn ? onRemove(todo.id) : alert('You are not a member!')}>X</button>
         </ListItem>
     )
 }
 
 const TodoList = ({
+    isLoggedIn,
     input,
     todos,
     onChangeInput,
@@ -40,11 +41,13 @@ const TodoList = ({
 }) => {
     const onSubmit = e => {
         e.preventDefault();
-        onInsert(input);
-        onChangeInput('');
+        if(isLoggedIn) {
+            onInsert(input);
+            return onChangeInput('');
+        } else return alert ('You are not a member!');
     }
 
-    const onChange = e => onChangeInput(e.target.value);
+    const onChange = e => isLoggedIn ? onChangeInput(e.target.value) : alert('You are not a member!');
 
     return (
         <ListContainer>
@@ -56,6 +59,7 @@ const TodoList = ({
             <div>
                 {todos.map(todo => (
                     <TodoItem
+                        isLoggedIn={isLoggedIn}
                         todo ={todo}
                         key={todo.id}
                         onToggle={onToggle}

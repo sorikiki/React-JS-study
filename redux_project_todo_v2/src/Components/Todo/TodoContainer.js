@@ -4,6 +4,7 @@ import { change_input, insert_todo, toggle_todo, remove_todo } from '../../Modul
 import TodoList from './TodoList';
 
 const TodoContainer = ({
+    isLoggedIn,
     input,
     todos,
     change_input,
@@ -13,6 +14,7 @@ const TodoContainer = ({
 }) => {
     return (
         <TodoList
+            isLoggedIn={isLoggedIn}
             input={input}
             todos={todos}
             onChangeInput={change_input}
@@ -24,7 +26,8 @@ const TodoContainer = ({
 }
 
 export default connect(
-    ({ todos }) => ({
+    ({ user, todos }) => ({
+        isLoggedIn: user.isLoggedIn,
         input: todos.input,
         todos: todos.todos
     }), {
