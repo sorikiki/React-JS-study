@@ -1,5 +1,5 @@
 const SIGNUP = 'user/SIGNUP';
-const LOGIN_REQUEST = 'user/LOGIN_REQUEST';
+const LOGIN_REQUEST = 'user/LOGIN_SUCCESS';
 const LOGOUT_REQUEST = 'user/LOGOUT_REQUEST';
 
 export const signUp = (id, password) => ({
@@ -8,15 +8,26 @@ export const signUp = (id, password) => ({
     password
 })
 
-export const logInLoading = (id, password) => ({
-    type: LOGIN_REQUEST,
-    id,
-    password
+const logInSuccess = () => ({
+    type: LOGIN_REQUEST
 })
 
-export const logOutLoading = () => ({
+const logOutComplete = () => ({
     type: LOGOUT_REQUEST
 })
+
+export const logInLoading = (id, password) => (dispatch, getState)=> {
+    const user = getState().user.user;
+    if(user.id === id && user.password === password) {
+        return setTimeout(()=> dispatch(logInSuccess()), 1000)}
+    else return alert('등록되지 않은 회원입니다.')
+}
+
+export const logOutLoading = () => dispatch => {
+    setTimeout(() => {
+        dispatch(logOutComplete())
+    }, 1000)
+};
 
 const initialState = {
     user: {
@@ -36,13 +47,11 @@ const user = (state = initialState, action) => {
                     password: action.password
                 }
             };
-        case LOGIN_REQUEST: 
-            if (state.user.id === action.id && state.user.password === action.password) {
-                return {
-                    ...state,
-                    isLoggedIn: true
-                }
-            } else return state;
+        case LOGIN_REQUEST:
+            return {
+                ...state,
+                isLoggedIn: true
+            };
         case LOGOUT_REQUEST: 
             return {
                 ...state,

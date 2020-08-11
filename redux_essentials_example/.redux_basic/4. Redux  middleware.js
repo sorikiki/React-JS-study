@@ -38,20 +38,17 @@
     const LOGIN_SUCCESS = 'user/LOGIN_SUCCESS';
     const LOGIN_ERROR = 'user/LOGIN_ERROR';
 
-    export const logInLoading = (id, password) => (state, dispatch)=> ({
+    export const logInLoading = (id, password) => (state, dispatch)=> {
         if(state.user.id === id && state.user.password === password) {
-            return setTimeout(()=> {
-                dispatch(logInSuccess());
-        }, 1000);
-        else return setTimeout(() => { dispatch(logInError())}, 1000);
-    })
+            return setTimeout(()=> dispatch(logInSuccess()), 1000)}
+        else return setTimeout(() => logInError(), 1000);
+    }
 
-    export const logInSuccess = () => ({
+    const logInSuccess = () => ({
         type: LOGIN_SUCCESS
     })
 
-    export const logInError = () => ({
-        type: LOGIN_ERROR,
-        error: '등록되지 않은 회원입니다.'
-    })
+    const logInError = () => {
+        alert('등록되지 않은 회원입니다.')
+    }
 */

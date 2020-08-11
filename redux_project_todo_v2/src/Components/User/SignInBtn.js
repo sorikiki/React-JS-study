@@ -18,4 +18,3 @@ const SignInBtn = ({ id, password, logInLoading }) => {
 }
 
 export default SignInBtn;
-    
