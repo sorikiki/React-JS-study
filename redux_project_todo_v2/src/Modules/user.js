@@ -1,5 +1,5 @@
 const SIGNUP = 'user/SIGNUP';
-const LOGIN_REQUEST = 'user/LOGIN_SUCCESS';
+const LOGIN_REQUEST = 'user/LOGIN_REQUEST';
 const LOGOUT_REQUEST = 'user/LOGOUT_REQUEST';
 
 export const signUp = (id, password) => ({
@@ -19,8 +19,8 @@ const logOutComplete = () => ({
 export const logInLoading = (id, password) => (dispatch, getState)=> {
     const user = getState().user.user;
     if(user.id === id && user.password === password) {
-        return setTimeout(()=> dispatch(logInSuccess()), 1000)}
-    else return alert('등록되지 않은 회원입니다.')
+        return setTimeout(() => dispatch(logInSuccess()), 1000)}
+    else alert('등록되지 않은 회원입니다.');
 }
 
 export const logOutLoading = () => dispatch => {

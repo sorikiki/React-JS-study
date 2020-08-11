@@ -49,7 +49,13 @@ const SignIn = ({ logInLoading }) => {
                     onChange={onChangePassword}
                 />
             </SignInInput>
-            <SignInBtn id={id} password={password} logInLoading={logInLoading} />
+            <SignInBtn 
+                id={id}
+                password={password}
+                setId={setId} 
+                setPassword={setPassword} 
+                logInLoading={logInLoading} 
+            />
         </SignInContainer>
     )
 }

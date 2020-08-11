@@ -5,9 +5,11 @@ const BtnContainer = styled.button`
     width: 100%;
     `
 
-const SignInBtn = ({ id, password, logInLoading }) => {
+const SignInBtn = ({ id, password, setId, setPassword, logInLoading }) => {
     const onHandleUser = () => {
         logInLoading(id, password);
+        setId('');
+        setPassword('');
     }
 
     return (
