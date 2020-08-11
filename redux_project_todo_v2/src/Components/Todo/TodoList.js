@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const ListContainer = styled.div`
     text-align: center;
-    border: 1px solid blue;
     width: 33%;
     `
 
