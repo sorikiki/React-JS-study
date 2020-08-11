@@ -534,3 +534,8 @@ const mapStateToProps = (...args) => {
   console.log(args[1]) // ownProps
 }
 */
+
+// ✅ useSelector() vs connect()
+// when a parent to a container component re-renders, re-rendering is prevented 
+// if the props of container component do not change.
+// However, looking up state using useSelector, this automatical process is not conducted. => React.memo 

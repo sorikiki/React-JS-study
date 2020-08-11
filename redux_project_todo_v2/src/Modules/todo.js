@@ -8,7 +8,7 @@ let id = 1;
 export const change_input = input => ({
     type: CHANGE_INPUT,
     input
-})
+});
 
 export const insert_todo = text => ({
     type: INSERT,
@@ -17,7 +17,7 @@ export const insert_todo = text => ({
         text,
         done: false
     }
-})
+});
 
 export const toggle_todo = id => ({
     type: TOGGLE,
@@ -27,7 +27,7 @@ export const toggle_todo = id => ({
 export const remove_todo = id => ({
     type: REMOVE,
     id
-})
+});
 
 const initialState = {
     input: '',
@@ -36,7 +36,7 @@ const initialState = {
             text: 'this is for a test',
             done: false
         }]
-}
+};
 
 const todos = (state = initialState, action) => {
     switch(action.type) {
