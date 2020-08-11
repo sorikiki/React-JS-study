@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import UserContainer from '../Components/User/UserContainer';
-import TodoContainer from '../Components/Todo/TodoContainer';
+import UserContainer from '../Components/Container/UserContainer';
+import TodoContainer from '../Components/Container/TodoContainer';
 
 const MainContainer = styled.div`
     display: flex;

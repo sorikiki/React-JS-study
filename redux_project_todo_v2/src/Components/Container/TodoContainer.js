@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { change_input, insert_todo, toggle_todo, remove_todo } from '../../Modules/todo';
-import TodoList from './TodoList';
+import TodoList from '../Todo/TodoList';
 
 const TodoContainer = ({
     isLoggedIn,

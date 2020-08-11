@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { signUp, logInLoading, logOutLoading } from '../../Modules/user';
-import SignUp from './SignUp';
-import SignIn from './SignIn';
-import MyPage from './MyPage';
-import SignOut from './SignOut';
+import SignUp from '../User/SignUp';
+import SignIn from '../User/SignIn';
+import MyPage from '../User/MyPage';
+import SignOut from '../User/SignOut';
 
 const ContainerStyle = styled.div`
     display: flex;
