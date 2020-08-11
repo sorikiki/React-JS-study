@@ -49,7 +49,13 @@ const SignUp = ({ onRegisterUser }) => {
                     onChange={onChangePassword}
                 />
             </SignUpInput>
-            <SignUpBtn id={id} password={password} onRegisterUser={onRegisterUser} />
+            <SignUpBtn 
+                id={id} 
+                password={password} 
+                setId={setId} 
+                setPassword={setPassword} 
+                onRegisterUser={onRegisterUser} 
+            />
         </SignUpContainer>
     )
 }

@@ -5,9 +5,12 @@ const BtnContainer = styled.button`
     width: 100%;
     `
 
-const SignUpBtn = ({ id, password, onRegisterUser }) => {
+const SignUpBtn = ({ id, password, setId, setPassword, onRegisterUser }) => {
     const onHandleUser = () => {
         onRegisterUser(id, password);
+        setId('');
+        setPassword('');
+        alert('회원가입이 완료되었습니다.');
     }
 
     return (

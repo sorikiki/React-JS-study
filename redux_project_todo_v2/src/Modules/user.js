@@ -36,20 +36,18 @@ const user = (state = initialState, action) => {
                     password: action.password
                 }
             };
-        case LOGIN_REQUEST: {
+        case LOGIN_REQUEST: 
             if (state.user.id === action.id && state.user.password === action.password) {
                 return {
                     ...state,
                     isLoggedIn: true
                 }
             } else return state;
-        };
-        case LOGOUT_REQUEST: {
+        case LOGOUT_REQUEST: 
             return {
                 ...state,
                 isLoggedIn: false
-            }
-        }
+            };
         default:
             return state;
     }
