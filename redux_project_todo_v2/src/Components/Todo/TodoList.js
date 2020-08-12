@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Button } from 'antd';
 
 const ListContainer = styled.div`
     text-align: center;
@@ -25,7 +26,7 @@ const TodoItem = ({ isLoggedIn, todo, onToggle, onRemove }) => {
                     {todo.text}
                 </span>
             </div>
-            <button onClick={() => isLoggedIn ? onRemove(todo.id) : alert('You are not a member!')}>X</button>
+            <Button type='dashed' onClick={() => isLoggedIn ? onRemove(todo.id) : alert('You are not a member!')}>X</Button>
         </ListItem>
     )
 }

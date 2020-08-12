@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Switch, 
   Route } from 'react-router-dom';
+import 'antd/dist/antd.css';
 import Main from './Routers/Main';
 import UserNotFound from './Routers/UserNotFound';
 
