@@ -1,9 +1,9 @@
-// Promise is a Javascript object for asynchronous operation.
+// ✨ Promise is a Javascript object for asynchronous operation.
 // state: pending -> fulfilled or rejected
 // Producer -> consumer
 
 /*
-// 1. Producer
+// ✅ Producer
 const promise = new Promise((resolve, reject) => {
   // doing some heavy work. (network, read files)
   console.log("doing something"); // when new Promise is created, the executor runs automatically.
@@ -13,13 +13,13 @@ const promise = new Promise((resolve, reject) => {
   }, 2000);
 });
 
-// 2. Consumer: then, catch, finally
+// ✅ Consumer: then, catch, finally
 promise
   .then((value) => console.log(value))
   .catch((error) => console.log(error))
   .finally(() => console.log('finally'));
 
-// 3. Promise chaining
+// ✅ Promise chaining
 const fetchNumber = new Promise((resolve, reject) => {
   setTimeout(() => {
     resolve(1);
@@ -39,7 +39,7 @@ fetchNumber
   ) // 5
   .then(console.log); // 5 
 
-// 4. Error handling
+// ✅ Error handling
 const getHen = () => 
     new Promise((resolve, reject) => {
         setTimeout(() => resolve('🐓'), 1000);
@@ -62,7 +62,7 @@ getHen()
     .then(console.log)
 */
 
-// 5. Solve callback example => use promise !!
+// ✅ Solve callback example => use promise !!
 /*
 class UserStorage {
     logInUser(id, password) {
