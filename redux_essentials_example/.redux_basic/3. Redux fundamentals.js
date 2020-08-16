@@ -539,3 +539,28 @@ const mapStateToProps = (...args) => {
 // when a parent to a container component re-renders, re-rendering is prevented 
 // if the props of container component do not change.
 // However, looking up state using useSelector, this automatical process is not conducted. => React.memo 
+
+
+// ✅ Review createStore
+// : more about 'createStore'!
+// ex. createStore(reducer, [preloadedState], [enhancer])
+// => its argument
+/*
+  reducer (Function): A reducing function that returns the next state tree, given the current state tree and an action to handle.
+
+  [preloadedState] (any): The initial state. You may optionally specify it to hydrate the state from the server in universal apps, or to restore a previously serialized user session. If you produced reducer with combineReducers, this must be a plain object with the same shape as the keys passed to it. Otherwise, you are free to pass anything that your reducer can understand.
+
+  [enhancer] (Function): The store enhancer. You may optionally specify it to enhance the store with third-party capabilities such as middleware, time travel, persistence, etc. The only store enhancer that ships with Redux is applyMiddleware().
+*/
+
+// ✅ state initializaiton (preloadedState) 💖
+// ✔ Without combineReducers()
+// => preloadedState always wins over state = ... in the reducer because the state passed to the reducer is preloadedState and is not undefined, so the ES6 argument syntax doesn't apply.
+
+// ✔ With combineReducers()
+// => If you produced reducer with combineReducers, this must be a plain object with the same shape as the keys passed to it.
+// => Those reducers whose state is specified in preloadedState will receive that state. Other reducers will receive undefined and because of that will fall back to the state = ... default argument they specify.
+
+// ✔ Note
+// => Reducers whose initial state is populated using preloadedState will still need to provide a default value to handle when passed a state of undefined.
+// => This can be any non-undefined value; there's no need to duplicate the section of preloadedState here as the default.
