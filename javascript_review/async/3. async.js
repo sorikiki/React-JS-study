@@ -65,7 +65,7 @@
 // => ❗ Note: It is important to note that the asynchronous processing method must return the Promise object to work as intended by await.
 // => The asynchronous processing code, which is typically the target of await, is an API call function that returns a Promise, such as Axios.
 
-// ✅ Example 1: bring apple => banana => print both fruits
+// ✅ Example: bring apple => banana => print both fruits
 /*
     function delay(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
