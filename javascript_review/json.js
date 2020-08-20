@@ -1,60 +1,3 @@
-// ✅ API call with axios
-// review(async.js): The asynchronous processing code, which is typically the target of await, is an API call function that returns a Promise, such as Axios.
-// => This means that axios is an API call function that returns Promise!
-/*
-    import React, { useState } from 'react';
-    import axios from 'axios';
-    
-    const App = () => {
-      const [data, setData] = useState(null);
-      const onClick = () => {
-        axios.get('https://jsonplaceholder.typicode.com/todos/1').then(response => {
-          setData(response.data);
-        });
-      };
-      return (
-        <div>
-          <div>
-            <button onClick={onClick}>불러오기</button>
-          </div>
-          {data && <textarea rows={7} value={JSON.stringify(data, null, 2)} readOnly={true} />}
-        </div>
-      );
-    };
-    
-    export default App;
-*/
-
-// add syntatic sugar! (async-await)
-/*
-    import React, { useState } from 'react';
-    import axios from 'axios';
-    
-    const App = () => {
-      const [data, setData] = useState(null);
-      const onClick = async () => {
-        try {
-          const response = await axios.get(
-            'https://jsonplaceholder.typicode.com/todos/1',
-          );
-          setData(response.data);
-        } catch (e) {
-          console.log(e);
-        }
-      };
-      return (
-        <div>
-          <div>
-            <button onClick={onClick}>불러오기</button>
-          </div>
-          {data && <textarea rows={7} value={JSON.stringify(data, null, 2)} readOnly={true} />}
-        </div>
-      );
-    };
-    
-    export default App;
-*/
-
 // ✅ JSON: javascript object notation
 // => key-value pairs
 // => independent programming language and platform ✨
@@ -105,7 +48,7 @@ let obj = JSON.parse(json);
 // ❗ note that object do not contain jump method because 'json' do not contain this at first.
 
 console.log(obj);
-console.log(obj.birthDate)
+console.log(obj.birthDate.getDate());
 // { ..., Date: "2020-05-29...", ... }
 // Type error
 // ❗ note that value of 'Date' is string type.
@@ -120,4 +63,3 @@ console.log(obj.birthDate.getDate());
 // {..., Date: Fri May 29 ... , ... }
 // 29
 // 29
-
