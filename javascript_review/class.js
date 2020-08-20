@@ -6,6 +6,7 @@
 // - syntactical sugar over prototype-based inheritance
 // - two ways of defining class: Class declarations & Class expressions
 
+
 // ✅ Class declarations
 // ❗ Note that it is not 'hoisted', unlike function declarations.
 // ❗ The body of a class is executed in strict mode, i.e., code written here is subject to stricter syntax for increased performance, some otherwise silent errors will be thrown.
@@ -13,7 +14,7 @@
 // ◽ Constructor()
 // : The constructor method is a special method for creating and initializing an object created with a class.
 // => There can only be one special method with the name "constructor" in a class. 
-// => A constructor can use the 'super' keyword to call the 'constructor' of the super class.
+// => A constructor can use the 'super' keyword to call the fields and methods of the super class.
 
 class Person {
     constructor(name, age) {
@@ -100,7 +101,7 @@ class Person {
     // Note that we cannot use 'this.age' instead of 'this._age' because it will call get() function repetively.
 
     set age(value) {
-        this._age<0 ? 0 : value;
+        this._age = value < 0 ? 0 : value;
     }
 
     // methods
@@ -141,3 +142,89 @@ const obj = {
     [add(10, 20)+" is Result by"]:"10+20"
 }
 console.log(obj); // {addNumber 5, 10: 15, 30 is Result by: "10+20"}
+
+
+
+// ✅ Fields (public, private)
+class Experiment {
+    publicField = 2;
+    #privateField = 0;
+}
+
+const experiment = new Experiment();
+console.log(experiment.publicField); // 2
+console.log(experiment.#privateField); // undefined
+
+console.log(Field.)
+
+
+// ✅ Static (Too soon!)
+// A static and static method (or static function) is defined as a member of an object but is accessible directly from an API object's constructor, rather than from an object instance created via the constructor.
+
+class Article {
+    static publisher = 'coding';
+
+    constructor(articleNum) {
+        this.articleNum = articleNum;
+    }
+
+    static printPublisher() {
+        console.log(Article.publisher);
+    }
+}
+
+const article1 = new Article(1);
+const article2 = new Article(2);
+
+console.log(article1.publisher); // undefined
+console.log(Article.publisher); // coding
+Article.printPublisher(); // coding
+
+
+// ✅ Heritance (using 'extends' keyword ✨)
+// : a way for one class to extend another class
+class Shape {
+    constructor(width, height, color) {
+        this.width = width;
+        this.height = height;
+        this.color = color;
+    }
+
+    draw() {
+        console.log(`drawing ${this.color} color of`);
+    }
+
+    getArea() {
+        return this.width * this.height;
+    }
+}
+
+class Rectangle extends Shape {}
+
+const rectangle = new Rectangle(200, 200, 'red');
+rectangle.draw(); // drawing red color of
+rectangle.getArea(); // 400
+
+// ✨ Overriding: A technique for defining methods of the same name between classes in an inheritance relationship.
+class Triangle extends Shape {
+    draw() {
+        super.draw();
+        console.log('🔺');
+    }
+
+    getArea() {
+        return this.width * this.height * 1/2;
+    }
+}
+
+const triangle = new Triangle(200, 200, 'blue');
+triangle.draw(); // drawing blue color of, 🔺
+triangle.getArea(); // 200 
+
+// ✅ Class checking: instanceof
+console.log(rectangle instanceof Rectangle); // true
+console.log(triangle instanceof Rectangle); // false
+console.log(triangle instanceof Triangle); // true
+console.log(triangle instanceof Shape); // true
+console.log(triangle instanceof Object); // true
+ 
