@@ -115,10 +115,6 @@ useEffect( () => {
 
 */
 
-// ✅ Custom Hook
-// it lets you extract component logics into reusable functions.
-// JavaScript function whose name starts with ”use” and that may call other Hooks.
-
 // ✅ useContext 
 // : Accepts a context object and returns the current context value for that context.
 // ✔ The current context value is determined by the value prop of the 'nearest' <MyContext.Provider> above the calling component in the tree.
@@ -176,4 +172,33 @@ const Counter = () => {
     </div>
   );
 };
+*/
+
+// ✅ Custom Hook
+// it lets you extract component logics into reusable functions.
+// JavaScript function whose name starts with ”use” and that may call other Hooks.
+
+// ✅ useCallback
+// ❓ Memoization: it is a technique that speeds up the program's execution by removing repeated performance of the same calculation by storing previously calculated values in memory. 
+// => Returns a memoized version of the callback that only changes if one of the dependencies has changed.
+// => eventually, it prevents functions from being re-produced.
+// => useCallback(fn, deps) is equivalent to useMemo(() => fn, deps).
+/*
+    const useValues = (a, b) => {
+        return useCallback(() => a+b, [a,b]);
+    }
+
+    const value = useValues(1, 2);
+    console.log(value); // () => a+b
+*/
+
+// ✅ useMemo
+// => Returns a memoized value.
+/*
+    const useValues = (a, b) => {
+        return useMemo(() => a+b, [a, b]);
+    }
+
+    const value = useValues(1, 2);
+    console.log(value); // 3
 */
