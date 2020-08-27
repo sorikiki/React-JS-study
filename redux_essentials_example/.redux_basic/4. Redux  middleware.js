@@ -27,4 +27,10 @@
 // => This way, the action creator becomes a thunk.
 // => This function doesn't need to be pure; it is thus allowed to have side effects, including executing asynchronous API calls.
 // => The function can also dispatch actions—like those synchronous actions we defined earlier.
-
+// ex.
+    export const logInLoading = (id, password) => (dispatch, getState)=> {
+        const user = getState().user.user;
+        if(user.id === id && user.password === password) {
+            return setTimeout(() => dispatch(logInSuccess()), 1000)}
+        else alert('등록되지 않은 회원입니다.');
+    }
