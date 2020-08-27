@@ -1,18 +1,20 @@
-const createPromiseThunk = (type, promiseCreators) => dispatch  => {
+export const createThunkPromise = (type, promiseCreators) => dispatch  => {
     const [ SUCCESS, ERROR ] = [`${type}_SUCCESS`, `${type}_ERROR`];
     
     // getPost에서 id를 받기에 param이 한 개 필요한 상황이다. 
-    return param => async dispatch =>
-    dispatch({ type, param });
-    try {
-        const payload = promiseCreators(param);
-        dispatch({ type: SUCCESS, payload });
-    } catch(e) {
-        dispatch({ type: ERROR, payload: e, error: true });
+    return (param) => async dispatch =>
+    {
+        dispatch({ type, param });
+        try {
+            const payload = promiseCreators(param);
+            dispatch({ type: SUCCESS, payload });
+        } catch(e) {
+            dispatch({ type: ERROR, payload: e, error: true });
+        }
     }
 }
 
-const reducerUtils = {
+export const reducerUtils = {
     initial: (initialData = null) => ({
         loading: false,
         data: initialData,
