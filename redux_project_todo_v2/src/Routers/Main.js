@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import UserContainer from '../Components/Container/UserContainer';
 import TodoContainer from '../Components/Container/TodoContainer';
 import CounterContainer from '../Components/Container/CounterContainer';
+import PostListContainer from '../Components/Container/PostListContainer';
 
 const MainContainer = styled.div`
     display: flex;
@@ -15,7 +16,10 @@ const Main = () => {
                 <UserContainer />
                 <TodoContainer />
             </MainContainer>
-            <CounterContainer />
+            <MainContainer>
+                <CounterContainer />
+                <PostListContainer />
+            </MainContainer>
         </div>
     )
 }
