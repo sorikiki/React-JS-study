@@ -6,6 +6,7 @@ import {
 import 'antd/dist/antd.css';
 import Main from './Routers/Main';
 import UserNotFound from './Routers/UserNotFound';
+import PostItemPage from './Routers/PostItem';
 
 function App() {
   return (
