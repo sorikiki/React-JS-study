@@ -34,3 +34,11 @@
             return setTimeout(() => dispatch(logInSuccess()), 1000)}
         else alert('등록되지 않은 회원입니다.');
     }
+
+// ✅ Promise + Redux thunk
+// ❓ For example, a situation in which you want to check a list of all posts or view only one post.
+// ❗ Considertions 
+// ✔ When Promise starts, succeeds, or fails, you must dispatch other actions. => 6 different action types
+// ✔ You must create a thunk function for each Promise. => 2 thunk function
+// ✔ A reducer must be divided into different cases(loading, success, error). => 6 different cases.
+
