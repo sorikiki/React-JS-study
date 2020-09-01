@@ -42,3 +42,51 @@
 // ✔ You must create a thunk function for each Promise. => 2 thunk function
 // ✔ A reducer must be divided into different cases(loading, success, error). => 6 different cases.
 
+
+// ✅ redux-saga
+
+// ✔ When we use?
+// ◽ cancel already existed request! (prevent unnecessary repeat)
+// ex. dispatch(action A) => dispatch(action A ❌) => dispatch(action A, different payload)
+// ◽ cause one action to another action
+// ◽ API request(irrelevant to Redux)
+// ◽ use WebSocket
+// ◽ re-request when api request fails.
+
+// ✔ generator Function : 
+// => to stop the function in a specific section or to return it when you want it to and you can return the result multiple times.
+// - When the generator is first created, the function is stopped.
+// - Returns a value in yield and stops the flow of code.
+/*
+    function* generatorFunction() {
+        consol.log(1);
+        yield 1;
+        console.log(2);
+        yield 2;
+        console.log(3);
+        yield 3;
+        return 4;
+    }
+
+    const generator = generatorFunction();
+
+    generator.next(); // 1, { value: 1, done: false}
+    generator.next(); // 2, { value: 2, done: false }
+    generator.next(); // 3, { value: 3, done: false}
+    generator.next(); // 4, { value: 4, done: true }
+*/
+// - When calling next, you can also pass the parameter to use it inside the generator function.
+/*
+    function* sumGenerator() {
+        console.log('제너레이터가 만들어졌습니다.');
+        let a = yield;
+        let b = yield;
+        yield a+b;
+    }
+
+    const sum = sumGenerator();
+    sum.next(); // { value: undefined, done: false }
+    sum.next(1); // { value: undefined, done: false }
+    sum.next(2); // { value: 3, done: false }
+    sum.next(); // { value: undefined, done: true }
+*/
