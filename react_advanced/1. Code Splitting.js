@@ -69,7 +69,20 @@
     }
 */
 
+// - React.lazy currently supports default exports only. 
+// => If you want to use named exports, you can create an intermediate module that overrides the name to default.
+/*
+    // ManyComponents.js
+    export const MyComponent = ... ;
+    export const MyUnusedComponent = ... ;
 
+    // MyComponent.js
+    export { MyComponent as default } from "./ManyComponents.js";
+
+    // MyApp.js
+    import React, { lazy } from 'react';
+    const MyComponent = lazy(() => import("./MyComponent.js"));
+*/
 // ✅ Loadable Components
 // - third party library  for code-splitting, supports 'server-side rendering✨'
 // - it also brings splitted file before rendering.
@@ -138,3 +151,6 @@
     }
 
 */
+
+// ✔ how to to decide where to introduce code splitting into the app?
+// => Route-based code splitting ✨
