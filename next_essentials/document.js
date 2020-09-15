@@ -3,7 +3,7 @@
 // => Next.js gives you the best developer experience with all the features you need for production: 
 //    ex. hybrid static & server rendering, TypeScript support, smart bundling, route pre-fetching, and more. No config needed.
 
-// ✅ Navigate between Pages
+// ✅ Navigate between Pages : Next.js does page-based routing!
 // ◽ creating another page
 // => simply create a JS file under the pages directory, and the path to the file becomes the URL path.
 // ◽ creating links to navigate between pages
@@ -16,7 +16,7 @@
 // => That is, code is not flickering on link clicks.
 // cf. essentially, react routing supports client-side navigation.
 
-// ✨ code splitting 
+// ✨ code splitting (related to js)
 // : Next.js does code splitting automatically, so each page only loads what’s necessary for that page.
 // => This ensures that the homepage loads quickly even if you add hundreds of pages.
 // => pages become isolated so that if a certain page throws an error, the rest of the application would still work.
@@ -27,3 +27,19 @@
 
 // ❗ Note: If you need to link to an external page outside the Next.js app, just use an <a> tag without Link.
 // ❗ Note: If you need to add attributes like, for example, className, add it to the a tag, not to the Link tag.
+
+
+// ✅ Pre-rendering (related to html)
+// : Next.js has two forms of pre-rendering: Static Generation and Server-side Rendering. The difference is in when it generates the HTML for a page.
+// ✔ Static Generation is the pre-rendering method that generates the HTML at build time. The pre-rendered HTML is then reused on each request.
+// => faster
+// ✔ Server-side Rendering is the pre-rendering method that generates the HTML on each request.
+// => up-to-date
+
+// ✨ Importantly, Next.js lets you choose which pre-rendering form to use for each page. 
+// ⏩ Or you can skip pre-rendering and use client-side JavaScript to populate frequently updated data.
+
+// cf. In development mode (when you run npm run dev or yarn dev), every page is pre-rendered on each request — even for pages that use Static Generation.
+
+// conclusion: server-side routing causes the whole page to refresh. 
+// => so we choose pre-rendering(static generation, server-side rendering) or client-side routing. 
