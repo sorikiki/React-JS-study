@@ -41,5 +41,9 @@
 
 // cf. In development mode (when you run npm run dev or yarn dev), every page is pre-rendered on each request — even for pages that use Static Generation.
 
-// conclusion: server-side routing causes the whole page to refresh. 
-// => so we choose pre-rendering(static generation, server-side rendering) or client-side routing. 
+// ✅ Static generation without and with Data
+// : for some pages, you might not be able to render the HTML without first fetching some external data.
+// => ex. Maybe you need to access the file system, fetch external API, or query your database at build time. 
+
+// ◽ getStaticProps
+// : when you export a page component, you can also export an async function called getStaticProps.
